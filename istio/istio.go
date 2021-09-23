@@ -45,6 +45,7 @@ func (istio *Istio) ApplyOperation(ctx context.Context, opReq adapter.OperationR
 		Details:     "Operation is not supported",
 	}
 
+	fmt.Printf("Debug Info -- opReq: %+v", opReq)
 	switch opReq.OperationName {
 	case internalconfig.IstioOperation:
 		go func(hh *Istio, ee *adapter.Event) {
