@@ -2,6 +2,7 @@ package istio
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	"github.com/layer5io/meshery-adapter-library/adapter"
@@ -34,6 +35,9 @@ func New(c meshkitCfg.Handler, l logger.Handler, kc meshkitCfg.Handler) adapter.
 // ApplyOperation applies the operation on istio
 func (istio *Istio) ApplyOperation(ctx context.Context, opReq adapter.OperationRequest) error {
 	operations := make(adapter.Operations)
+	if operations == nil {
+		return errors.New("Operations are none.")
+	}
 	err := istio.Config.GetObject(adapter.OperationsKey, &operations)
 	if err != nil {
 		return err
